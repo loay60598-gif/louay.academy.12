@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LOUAI ACADEMY</title>
+<style>
+:root{--bg:#0b1220;--panel:#121e31;--panel2:#192941;--line:#2a3b55;--txt:#eef4ff;--muted:#aab8cc;--blue:#4e8cff;--cyan:#35d6c4}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 15% 0%,#172e4b 0,transparent 35%),var(--bg);color:var(--txt);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+header{border-bottom:1px solid var(--line);background:#0b1220ed}
+.wrap{max-width:1120px;margin:auto;padding:17px 20px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#071322;font-weight:bold;padding:13px 14px;border-radius:13px}
+.brand h1{font-size:19px;margin:0}
+.brand small{color:var(--muted)}
+main{max-width:1120px;margin:27px auto;padding:0 18px}
+.hero{padding:27px;border:1px solid #345071;border-radius:20px;background:linear-gradient(120deg,#172d49,#142033);margin-bottom:20px}
+.hero span,.accent{color:var(--cyan);font-weight:bold}
+.hero h2{font-size:clamp(25px,4vw,36px);margin:10px 0}
+.hero p{color:#c4d0e1;line-height:1.9;margin-bottom:0}
+.layout{display:grid;grid-template-columns:300px 1fr;gap:15px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.box h3{margin-top:0}
+.field{width:100%;padding:11px;background:#0b1728;color:var(--txt);border:1px solid var(--line);border-radius:10px;margin:7px 0 13px;font:inherit}
+label{font-size:13px;color:var(--muted)}
+.btn{background:var(--blue);border:0;color:white;padding:10px 14px;border-radius:10px;font:inherit;cursor:pointer}
+.btn.secondary{background:var(--panel2);border:1px solid var(--line)}
+.subject-grid,.chapter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:15px}
+.subject,.chapter{padding:15px;background:var(--panel2);border:1px solid var(--line);border-radius:12px}
+.subject{cursor:pointer;text-align:right;color:var(--txt);font:inherit;width:100%;transition:.15s}
+.subject:hover,.chapter:hover{border-color:var(--cyan);transform:translateY(-1px)}
+.subject strong,.chapter strong{display:block;margin-bottom:6px}
+.subject small,.chapter small{color:var(--muted);font-size:12px}
+.subject .symbol{font-size:23px;display:block;margin-bottom:8px}
+.crumb{color:var(--cyan);font-size:13px}
+.result-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.pill{display:inline-block;background:#123c42;color:var(--cyan);padding:6px 10px;border-radius:30px;font-size:12px}
+.muted{color:var(--muted);line-height:1.8}
+.hidden{display:none!important}
+.empty{color:var(--muted);line-height:1.9;padding:15px;background:#0c1728;border-radius:12px}
+.breadcrumbs{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:15px;font-size:13px;color:var(--muted)}
+.breadcrumbs button{background:none;border:0;color:var(--cyan);font:inherit;cursor:pointer;padding:0}
+.lesson-content{line-height:2.1;color:#dce6f5}
+.lesson-content h3{color:var(--cyan);margin-top:22px}
+.lesson-content ul{padding-right:22px}
+.callout{background:#0c1728;border-right:3px solid var(--cyan);padding:13px 15px;border-radius:10px;margin:15px 0}
+.exercise{background:var(--panel2);padding:14px;border-radius:12px;margin:12px 0}
+.exercise button{margin:5px}
+.feedback{margin-top:10px;color:var(--cyan)}
+.note{font-size:12px;color:#f0c86a;line-height:1.9;margin-top:14px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.subject-grid,.chapter-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:450px){.subject-grid,.chapter-grid{grid-template-columns:1fr}.wrap{padding:14px}.box{padding:14px}}
+</style>
+</head>
+<body>
+<header><div class="wrap brand"><div class="logo">LA</div><div><h1>LOUAI ACADEMY</h1><small>منصتك التعليمية الجزائرية</small></div></div></header>
+<main>
+<section class="hero"><span>المرحلة الثانية من التطوير</span><h2>من اختيار المادة إلى فهم الدرس</h2><p>اختر مسارك الدراسي، افتح المادة، ثم انتقل بين الوحدات والدروس والملخصات والتمارين.</p></section>
+<div class="layout">
+<aside class="box">
+<h3>المسار الدراسي</h3>
+<label for="stage">الطور</label>
+<select id="stage" class="field">
+<option value="primary">الابتدائي</option>
+<option value="middle">المتوسط</option>
+<option value="secondary" selected>الثانوي</option>
+</select>
+<label for="year">السنة</label>
+<select id="year" class="field"></select>
+<div id="branchWrap"><label for="branch">الجذع أو الشعبة</label><select id="branch" class="field"></select></div>
+<button class="btn" id="apply">عرض المواد</button>
+<div class="note">المحتوى الدراسي يُضاف تدريجيًا ويجب تدقيقه مع الوثائق الرسمية قبل اعتماده.</div>
+</aside>
+<section class="box">
+<div id="subjectsView">
+<div class="result-top"><div><span class="crumb" id="pathLabel">الثانوي / السنة الأولى</span><h2>اختر المادة</h2></div><span class="pill" id="subjectCount">0 مواد</span></div>
+<div id="subjects" class="subject-grid"></div>
+</div>
+<div id="chaptersView" class="hidden">
+<div class="breadcrumbs"><button id="backSubjects">المواد</button><span>›</span><span id="chapterPath"></span></div>
+<div class="result-top"><div><span class="crumb">مكتبة المادة</span><h2 id="subjectTitle"></h2></div><span class="pill" id="chapterCount"></span></div>
+<p class="muted">اختر الوحدة أو الفصل لعرض الدروس المتاحة.</p>
+<div id="chapters" class="chapter-grid"></div>
+</div>
+<div id="lessonView" class="hidden">
+<div class="breadcrumbs"><button id="backSubjects2">المواد</button><span>›</span><button id="backChapters"></button><span>›</span><span id="lessonCrumb"></span></div>
+<div class="result-top"><div><span class="crumb">الدرس</span><h2 id="lessonTitle"></h2></div><span class="pill">شرح + خلاصة + تطبيق</span></div>
+<div id="lessonBody" class="lesson-content"></div>
+</div>
+</section>
+</div>
+</main>
+<footer>© 2026 LOUAI ACADEMY — نتعلم خطوة بخطوة</footer>
+<script>
+const curriculum={
+primary:{years:["السنة الأولى ابتدائي","السنة الثانية ابتدائي","السنة الثالثة ابتدائي","السنة الرابعة ابتدائي","السنة الخامسة ابتدائي"],branches:null,subjects:{
+"السنة الأولى ابتدائي":["اللغة العربية","الرياضيات","التربية الإسلامية","التربية المدنية","التربية العلمية والتكنولوجية","التربية الفنية","التربية البدنية"],
+"السنة الثانية ابتدائي":["اللغة العربية","الرياضيات","التربية الإسلامية","التربية المدنية","التربية العلمية والتكنولوجية","التربية الفنية","التربية البدنية"],
+"السنة الثالثة ابتدائي":["اللغة العربية","الرياضيات","التربية الإسلامية","التربية المدنية","التربية العلمية والتكنولوجية","اللغة الإنجليزية","التربية الفنية","التربية البدنية"],
+"السنة الرابعة ابتدائي":["اللغة العربية","الرياضيات","التربية الإسلامية","التربية المدنية","التربية العلمية والتكنولوجية","التاريخ","الجغرافيا","اللغة الفرنسية","اللغة الإنجليزية","التربية الفنية","التربية البدنية"],
+"السنة الخامسة ابتدائي":["اللغة العربية","الرياضيات","التربية الإسلامية","التربية المدنية","التربية العلمية والتكنولوجية","التاريخ","الجغرافيا","اللغة الفرنسية","اللغة الإنجليزية","التربية الفنية","التربية البدنية"]}},
+middle:{years:["السنة الأولى متوسط","السنة الثانية متوسط","السنة الثالثة متوسط","السنة الرابعة متوسط"],branches:null,subjects:{
+"السنة الأولى متوسط":["اللغة العربية","الرياضيات","علوم الطبيعة والحياة","العلوم الفيزيائية والتكنولوجيا","التربية الإسلامية","التربية المدنية","التاريخ والجغرافيا","اللغة الفرنسية","اللغة الإنجليزية","الإعلام الآلي","التربية الفنية","التربية البدنية"],
+"السنة الثانية متوسط":["اللغة العربية","الرياضيات","علوم الطبيعة والحياة","العلوم الفيزيائية والتكنولوجيا","التربية الإسلامية","التربية المدنية","التاريخ والجغرافيا","اللغة الفرنسية","اللغة الإنجليزية","الإعلام الآلي","التربية الفنية","التربية البدنية"],
+"السنة الثالثة متوسط":["اللغة العربية","الرياضيات","علوم الطبيعة والحياة","العلوم الفيزيائية والتكنولوجيا","التربية الإسلامية","التربية المدنية","التاريخ والجغرافيا","اللغة الفرنسية","اللغة الإنجليزية","الإعلام الآلي","التربية الفنية","التربية البدنية"],
+"السنة الرابعة متوسط":["اللغة العربية","الرياضيات","علوم الطبيعة والحياة","العلوم الفيزيائية والتكنولوجيا","التربية الإسلامية","التربية المدنية","التاريخ والجغرافيا","اللغة الفرنسية","اللغة الإنجليزية","الإعلام الآلي","التربية الفنية","التربية البدنية"]}},
+secondary:{years:["السنة الأولى ثانوي","السنة الثانية ثانوي","السنة الثالثة ثانوي"],branches:{
+"السنة الأولى ثانوي":["جذع مشترك علوم وتكنولوجيا","جذع مشترك آداب"],
+"السنة الثانية ثانوي":["علوم تجريبية","رياضيات","تقني رياضي","تسيير واقتصاد","آداب وفلسفة","لغات أجنبية"],
+"السنة الثالثة ثانوي":["علوم تجريبية","رياضيات","تقني رياضي","تسيير واقتصاد","آداب وفلسفة","لغات أجنبية"]},subjects:{
+"جذع مشترك علوم وتكنولوجيا":["الرياضيات","العلوم الفيزيائية","علوم الطبيعة والحياة","التكنولوجيا","الإعلام الآلي","اللغة العربية","اللغة الفرنسية","اللغة الإنجليزية","التاريخ والجغرافيا","العلوم الإسلامية","الفلسفة","التربية البدنية"],
+"جذع مشترك آداب":["اللغة العربية","اللغة الفرنسية","اللغة الإنجليزية","الرياضيات","التاريخ والجغرافيا","العلوم الإسلامية","العلوم الفيزيائية","علوم الطبيعة والحياة","الإعلام الآلي","الفلسفة","التربية البدنية"],
+"علوم تجريبية":["الرياضيات","العلوم الفيزيائية","علوم الطبيعة والحياة","اللغة العربية","اللغة الفرنسية","اللغة الإنجليزية","العلوم الإسلامية","التاريخ والجغرافيا","الفلسفة","الإعلام الآلي","التربية البدنية"],
+"رياضيات":["الرياضيات","العلوم الفيزيائية","علوم الطبيعة والحياة","اللغة العربية","اللغة الفرنسية","اللغة الإنجليزية","العلوم الإسلامية","التاريخ والجغرافيا","الفلسفة","الإعلام الآلي","التربية البدنية"],
+"تقني رياضي":["الرياضيات","العلوم الفيزيائية","التكنولوجيا","هندسة تخصصية","اللغة العربية","اللغة الفرنسية","اللغة الإنجليزية","العلوم الإسلامية","التاريخ والجغرافيا","الفلسفة","الإعلام الآلي","التربية البدنية"],
+"تسيير واقتصاد":["التسيير المحاسبي والمالي","الاقتصاد والمناجمنت","القانون","الرياضيات","اللغة العربية","اللغة الفرنسية","اللغة الإنجليزية","العلوم الإسلامية","التاريخ والجغرافيا","الفلسفة","التربية البدنية"],
+"آداب وفلسفة":["اللغة العربية وآدابها","الفلسفة","التاريخ والجغرافيا","اللغة الفرنسية","اللغة الإنجليزية","العلوم الإسلامية","الرياضيات","العلوم الفيزيائية","علوم الطبيعة والحياة","التربية البدنية"],
+"لغات أجنبية":["اللغة العربية","اللغة الفرنسية","اللغة الإنجليزية","لغة أجنبية ثالثة","الفلسفة","التاريخ والجغرافيا","العلوم الإسلامية","الرياضيات","التربية البدنية"]}}};
+const sample={
+"الرياضيات":{chapters:[
+{title:"الأعداد والحساب",lessons:[
+{title:"مجموعات الأعداد",intro:"تسمح مجموعات الأعداد بتصنيف الأعداد حسب خصائصها.",sections:[
+["المجموعات الأساسية","N: مجموعة الأعداد الطبيعية.\nZ: مجموعة الأعداد الصحيحة النسبية.\nD: مجموعة الأعداد العشرية.\nQ: مجموعة الأعداد الناطقة.\nR: مجموعة الأعداد الحقيقية."],
+["علاقة الاحتواء","كل عدد طبيعي هو عدد صحيح، وكل عدد صحيح هو عدد عشري، كما أن كل عدد عشري هو عدد ناطق. وتُعد هذه المجموعات أجزاء من مجموعة الأعداد الحقيقية."]],
+summary:["N: الطبيعية","Z: الصحيحة النسبية","D: العشرية","Q: الناطقة","R: الحقيقية"],
+question:"هل العدد -3 ينتمي إلى N؟",answer:"لا، لأن -3 عدد صحيح سالب، وينتمي إلى Z."}
+]},
+{title:"الحساب والقوى",lessons:[
+{title:"القوى",intro:"القوة طريقة مختصرة لكتابة جداء عوامل متساوية.",sections:[
+["الكتابة","aⁿ تعني ضرب العدد a في نفسه n مرات، حيث n عدد طبيعي."],
+["مثال","2³ = 2 × 2 × 2 = 8."]],
+summary:["aⁿ = a مضروب في نفسه n مرات","2³ = 8"],
+question:"احسب 3².",answer:"3² = 3 × 3 = 9."}
+]}]},
+"العلوم الفيزيائية":{chapters:[
+{title:"بنية أفراد بعض الأنواع الكيميائية",lessons:[
+{title:"بنية الذرة",intro:"الذرة فرد كيميائي متعادل كهربائيًا في حالته العادية، وتتكون من نواة وإلكترونات.",sections:[
+["النواة","توجد في مركز الذرة، وتتكون من بروتونات موجبة ونيوترونات متعادلة."],
+["الإلكترونات","جسيمات سالبة الشحنة تتحرك حول النواة."],
+["العدد الذري والعدد الكتلي","Z يمثل عدد البروتونات. A يمثل مجموع البروتونات والنيوترونات. عدد النيوترونات N = A − Z."]],
+summary:["Z = عدد البروتونات","A = عدد البروتونات + عدد النيوترونات","N = A − Z","في الذرة المتعادلة: عدد الإلكترونات = Z"],
+question:"ذرة عددها الكتلي A=18 وعددها الذري Z=8. احسب عدد النيوترونات.",answer:"N = A − Z = 18 − 8 = 10 نيوترونات."},
+{title:"النوع الكيميائي والفرد الكيميائي",intro:"نميز بين النوع الكيميائي والفرد الكيميائي.",sections:[
+["الفرد الكيميائي","كيان مجهري مثل ذرة أو جزيء أو شاردة."],
+["النوع الكيميائي","مجموعة من الأفراد الكيميائية المتماثلة."]],
+summary:["الفرد الكيميائي: كيان مجهري واحد","النوع الكيميائي: مجموعة أفراد متماثلة"],
+question:"هل الماء H₂O نوع كيميائي أم فرد كيميائي؟",answer:"الماء H₂O نوع كيميائي عندما نقصد مجموعة جزيئاته، أما جزيء واحد فهو فرد كيميائي."},
+{title:"الكشف عن بعض الأنواع الكيميائية",intro:"نستعمل اختبارات كيميائية للتعرف على بعض الأنواع الكيميائية.",sections:[
+["مبدأ الكشف","نضيف كاشفًا مناسبًا إلى العينة ونلاحظ التغير الناتج، ثم نقارن الملاحظة بالنتيجة المعروفة للاختبار."]],
+summary:["اختيار الكاشف المناسب","ملاحظة النتيجة","استنتاج وجود النوع الكيميائي"],
+question:"ما الخطوة التي تلي إضافة الكاشف؟",answer:"نلاحظ النتيجة ونسجلها ثم نقارنها بالاختبار المرجعي."}
+]}]},
+"علوم الطبيعة والحياة":{chapters:[
+{title:"الخلية والنمو",lessons:[
+{title:"مقدمة حول الخلية",intro:"الخلية هي الوحدة البنيوية والوظيفية للكائنات الحية.",sections:[
+["مكونات عامة","تضم الخلية مكونات أساسية مثل الغشاء الهيولي والهيولى والمادة الوراثية، وقد تحتوي على عضيات متخصصة."]],
+summary:["الخلية وحدة بنيوية ووظيفية","تختلف الخلايا في الشكل والحجم","تؤدي الخلايا وظائف حيوية"],
+question:"ما الوحدة البنيوية والوظيفية للكائن الحي؟",answer:"الخلية."}
+]}]},
+"الإعلام الآلي":{chapters:[
+{title:"مفاهيم أولية",lessons:[
+{title:"مكونات الحاسوب",intro:"يتكون نظام الحاسوب من عتاد وبرمجيات.",sections:[
+["العتاد Hardware","الأجزاء المادية التي يمكن لمسها، مثل الشاشة ولوحة المفاتيح ووحدة المعالجة."],
+["البرمجيات Software","البرامج والتعليمات التي تسمح للحاسوب بتنفيذ المهام."]],
+summary:["Hardware = العتاد","Software = البرمجيات"],
+question:"هل لوحة المفاتيح عتاد أم برمجيات؟",answer:"لوحة المفاتيح من العتاد لأنها جزء مادي."}
+]}]},
+"التكنولوجيا":{chapters:[
+{title:"مدخل إلى التكنولوجيا",lessons:[
+{title:"الحاجة والمنتج التقني",intro:"يُصمم المنتج التقني لتلبية حاجة أو حل مشكلة.",sections:[
+["الحاجة","هي ما يتطلبه الإنسان أو المستخدم، ويكون المنتج وسيلة لتلبيتها."],
+["المنتج التقني","شيء أو نظام يتم تصميمه وإنجازه لتحقيق وظيفة محددة."]],
+summary:["نحدد الحاجة أولًا","نبحث عن وظيفة المنتج","نراعي شروط الاستعمال والقيود"],
+question:"لماذا نصمم منتجًا تقنيًا؟",answer:"لتلبية حاجة أو حل مشكلة لدى المستخدم."}
+]}]}
+};
+const stage=document.getElementById('stage'),year=document.getElementById('year'),branch=document.getElementById('branch');
+let currentSubject='',currentChapter='';
+function fill(sel,arr){sel.replaceChildren();arr.forEach(v=>{let o=document.createElement('option');o.value=v;o.textContent=v;sel.append(o);});}
+function stageUpdate(){let s=curriculum[stage.value];fill(year,s.years);yearUpdate();}
+function yearUpdate(){let s=curriculum[stage.value];if(stage.value==='secondary'){document.getElementById('branchWrap').classList.remove('hidden');fill(branch,s.branches[year.value]||[]);}else{document.getElementById('branchWrap').classList.add('hidden');fill(branch,[]);}renderSubjects();}
+function selectedKey(){return stage.value==='secondary'?branch.value:year.value;}
+function renderSubjects(){
+showView('subjectsView');
+let s=curriculum[stage.value],key=selectedKey(),list=s.subjects[key]||[];
+let stageText=stage.value==='primary'?'الابتدائي':stage.value==='middle'?'المتوسط':'الثانوي';
+document.getElementById('pathLabel').textContent=stageText+' / '+year.value+(stage.value==='secondary'?' / '+key:'');
+document.getElementById('subjectCount').textContent=list.length+' مواد';
+let root=document.getElementById('subjects');root.replaceChildren();
+list.forEach((name,i)=>{
+let b=document.createElement('button');b.className='subject';
+let symbol=document.createElement('span');symbol.className='symbol';symbol.textContent=['📘','🧮','🧪','🌍','💻','⚙️'][i%6];
+let strong=document.createElement('strong');strong.textContent=name;
+let small=document.createElement('small');small.textContent=(sample[name]?'توجد دروس تجريبية':'المحتوى قيد الإضافة')+' ← افتح المادة';
+b.append(symbol,strong,small);b.onclick=()=>openSubject(name);root.append(b);
+});
+}
+function showView(id){['subjectsView','chaptersView','lessonView'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==id));}
+function openSubject(name){
+currentSubject=name;let data=sample[name];
+document.getElementById('subjectTitle').textContent=name;
+document.getElementById('chapterPath').textContent=name;
+let root=document.getElementById('chapters');root.replaceChildren();
+let chapters=data?.chapters||[];
+document.getElementById('chapterCount').textContent=chapters.length?chapters.length+' وحدات':'قريبًا';
+if(!chapters.length){let p=document.createElement('p');p.className='empty';p.textContent='لم نضف دروس هذه المادة بعد. سيتم إدراج الوحدات والدروس وفق البرنامج الرسمي.';root.append(p);}
+chapters.forEach(ch=>{
+let b=document.createElement('button');b.className='subject';
+let strong=document.createElement('strong');strong.textContent='📂 '+ch.title;
+let small=document.createElement('small');small.textContent=ch.lessons.length+' دروس';
+b.append(strong,small);b.onclick=()=>openChapter(ch);root.append(b);
+});
+showView('chaptersView');
+}
+function openChapter(ch){
+currentChapter=ch.title;let root=document.getElementById('chapters');root.replaceChildren();
+document.getElementById('chapterPath').textContent=currentSubject+' / '+ch.title;
+ch.lessons.forEach(lesson=>{
+let b=document.createElement('button');b.className='subject';
+let strong=document.createElement('strong');strong.textContent='📖 '+lesson.title;
+let small=document.createElement('small');small.textContent='شرح الدرس والملخص والتطبيق';
+b.append(strong,small);b.onclick=()=>openLesson(lesson);root.append(b);
+});
+showView('chaptersView');
+}
+function openLesson(lesson){
+document.getElementById('backChapters').textContent=currentSubject;
+document.getElementById('lessonCrumb').textContent=lesson.title;
+document.getElementById('lessonTitle').textContent=lesson.title;
+let root=document.getElementById('lessonBody');root.replaceChildren();
+let intro=document.createElement('p');intro.textContent=lesson.intro;root.append(intro);
+lesson.sections.forEach(sec=>{
+let h=document.createElement('h3');h.textContent=sec[0];
+let p=document.createElement('p');p.style.whiteSpace='pre-line';p.textContent=sec[1];root.append(h,p);
+});
+let summary=document.createElement('div');summary.className='callout';
+let sh=document.createElement('h3');sh.textContent='الخلاصة للحفظ';
+let ul=document.createElement('ul');
+lesson.summary.forEach(x=>{let li=document.createElement('li');li.textContent=x;ul.append(li);});
+summary.append(sh,ul);root.append(summary);
+let ex=document.createElement('div');ex.className='exercise';
+let q=document.createElement('strong');q.textContent='اختبر فهمك: '+lesson.question;
+let b=document.createElement('button');b.className='btn secondary';b.textContent='إظهار التصحيح';
+let ans=document.createElement('p');ans.className='feedback hidden';ans.textContent=lesson.answer;
+b.onclick=()=>{ans.classList.toggle('hidden');b.textContent=ans.classList.contains('hidden')?'إظهار التصحيح':'إخفاء التصحيح';};
+ex.append(q,document.createElement('br'),b,ans);root.append(ex);showView('lessonView');
+}
+document.getElementById('apply').onclick=renderSubjects;
+stage.addEventListener('change',stageUpdate);
+year.addEventListener('change',yearUpdate);
+branch.addEventListener('change',renderSubjects);
+document.getElementById('backSubjects').onclick=renderSubjects;
+document.getElementById('backSubjects2').onclick=renderSubjects;
+document.getElementById('backChapters').onclick=()=>openSubject(currentSubject);
+stageUpdate();
+</script>
+</body>
+</html>
